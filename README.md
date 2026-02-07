@@ -111,11 +111,15 @@ A **search budget of 1000 trials** is recommended to ensure convergence of:
 
 ```bash
 python main.py \
-    --config-file configs/trainers/ReHARK/vit_b16.yaml \
-    --dataset-config-file configs/datasets/imagenet.yaml \
-    --trainer ReHARK \
-    --shot 1 \
-    --search_budget 1000
+   --method ReHARK \
+   --dataset caltech101 \
+   --dataset-path ./data \
+   --shots-path ../shots_cache \
+   --test-path ../test_features \
+   --cache-dir ../cache \
+   --shots 1 \
+   --backbone RN50 \
+   --augment-epoch 10
 ```
 ## 📌 Citation
 
