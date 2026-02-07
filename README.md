@@ -1,124 +1,143 @@
-<h1 align='center' style="text-align:center; font-weight:bold; font-size:2.0em;letter-spacing:2.0px;"> ReHARK: Refined Hybrid Adaptive RBF Kernels for Robust One-Shot Vision-Language Adaptation </h1>
-<p align="center" style="margin: 0;">🚀 Achieving State-of-the-Art in Training-Free One-Shot Adaptation 🚀</p>
+# ReHARK  
+**Refined Hybrid Adaptive RBF Kernels for Robust One-Shot Vision-Language Adaptation**
 
-<p align='center' style="text-align:center;font-size:1.25em;">
-<a href="mailto:yassir.bendou@gmail.com" target="_blank" style="text-decoration: none;">Yassir Bendou</a>
+**Md Jahidul Islam**  
+Department of Electrical and Electronic Engineering  
+Bangladesh University of Engineering and Technology (BUET)  
+Preprint, 2026
 
+---
 
+## 🔍 Overview
 
-<em>IMT Atlantique</em>
-</p>
+Adapting large-scale Vision-Language Models (VLMs) such as **CLIP** to downstream tasks with *extremely limited data*—especially in the **one-shot regime**—remains challenging due to the **Stability–Plasticity dilemma**.
 
-<p align='center' style="text-align:center;font-size:2.5 em;">
-<b>
-<a href="https://arxiv.org/abs/2501.11175" target="_blank" style="text-decoration: none;">[Paper]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank" style="text-decoration: none;">[Project Page]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" target="_blank" style="text-decoration: none;">[Code]</a>
-</b>
-</p>
+Existing *training-free* methods (e.g., Tip-Adapter, ProKeR) largely behave as **local Nadaraya–Watson estimators**, suffering from boundary bias and weak global structural regularization.
 
-Abstract
+To address these limitations, we propose **ReHARK**, a **training-free**, globally regularized adaptation framework that operates in a **Reproducing Kernel Hilbert Space (RKHS)** using **Refined Hybrid Adaptive RBF Kernels**.
 
-The adaptation of large-scale Vision-Language Models (VLMs) like CLIP to downstream tasks in the one-shot regime is often hindered by a significant "Stability-Plasticity" dilemma. ReHARK (Refined Hybrid Adaptive RBF Kernels) is a synergistic training-free framework that reinterprets few-shot adaptation through global proximal regularization in a Reproducing Kernel Hilbert Space (RKHS).
+ReHARK establishes a **new state-of-the-art** for one-shot vision-language adaptation across **11 diverse benchmarks**, achieving an **average accuracy of 65.83%** using a ViT-B/16 CLIP backbone.
 
-The proposed pipeline consists of:
+---
 
-(1) Hybrid Prior Construction: Seamlessly fusing CLIP and GPT-3 textual knowledge with visual prototypes to form robust semantic-visual anchors.
+## ✨ Key Idea
 
-(2) Support Set Augmentation (Bridging): Generating intermediate samples to smooth the transition between visual and textual modalities.
+ReHARK reframes few-shot adaptation as **global proximal regularization in RKHS**, enabling robust adaptation while preserving zero-shot knowledge.
 
-(3) Adaptive Distribution Rectification: Aligning test feature statistics with the augmented support set to mitigate domain shifts.
+The framework introduces a **multi-stage refinement pipeline**:
 
-(4) Multi-Scale RBF Kernels: Utilizing an ensemble of kernels to capture complex feature geometries across diverse scales.
+1. **Hybrid Prior Construction**  
+   Combines:
+   - Zero-shot CLIP textual embeddings  
+   - High-density GPT-3 semantic descriptions  
+   - Visual class prototypes  
 
-ReHARK establishes a new state-of-the-art for one-shot adaptation, achieving an average accuracy of 65.83% across 11 benchmarks.
+2. **Support Set Augmentation (Bridging)**  
+   Generates intermediate samples to smooth transitions between visual and textual modalities.
 
-Requirements
+3. **Adaptive Distribution Rectification**  
+   Aligns test feature statistics with the augmented support set to reduce domain shift.
 
-Installation
+4. **Multi-Scale RBF Kernel Ensemble**  
+   Captures both local and global feature geometries through adaptive kernel mixing.
 
-Using conda
+---
 
-Create a conda environment and install dependencies:
+## 🚀 Contributions
 
-conda create -n rehark python=3.9
-conda activate rehark
+- **ReHARK**: A fully *training-free* framework resolving the Stability–Plasticity dilemma via global RKHS regularization.
+- **Hybrid Semantic–Visual Prior** combining CLIP, GPT-3, and visual prototypes for a stable global anchor.
+- **Multi-Scale Adaptive RBF Kernel Ensemble** for robust geometry modeling in high-variance one-shot settings.
+- **Extensive evaluation on 11 benchmarks**, achieving a new SOTA **65.83%** average accuracy.
 
+---
+
+## 📊 1-Shot Performance (ViT-B/16 CLIP)
+
+Classification accuracy (%) in the **1-shot** setting:
+
+| Method | ImageNet | EuroSAT | DTD | Food101 | Pets | SUN397 | UCF101 | Avg |
+|------|---------|---------|-----|--------|------|--------|--------|------|
+| Zero-Shot CLIP | 60.35 | 36.27 | 42.91 | 77.37 | 85.72 | 58.82 | 61.78 | 58.88 |
+| GDA | 60.68 | 58.30 | 46.26 | 77.42 | 85.49 | 59.93 | 62.65 | 62.24 |
+| Tip-Adapter | 60.58 | 56.76 | 45.90 | 77.54 | 86.02 | 60.15 | 64.40 | 62.85 |
+| ProKeR | 60.77 | 59.75 | 47.99 | 77.40 | 86.44 | 59.61 | 65.13 | 63.77 |
+| **ReHARK (Ours)** | **61.88** | **69.19** | **49.23** | **77.55** | **86.34** | **63.53** | **64.83** | **65.83** |
+
+📌 ReHARK shows especially strong gains on **structure-sensitive datasets** such as **EuroSAT** and **DTD**.
+
+---
+
+## 🛠 Installation
+
+### Environment Setup
+
+This repository is built on **Python + PyTorch**, following the **CoOp / dassl** ecosystem.
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/ReHARK.git
+cd ReHARK
+
+# Install dependencies (following CoOp setup)
 pip install -r requirements.txt
+```
+Please refer to the original **CoOp** repository for detailed `dassl` installation instructions.
 
+---
 
-Using uv
+## 🔧 Hyperparameter Optimization
 
-If you prefer to use uv:
+We use **Optuna** for hyperparameter selection.
 
-uv venv --python 3.9
-source .venv/bin/activate
-uv pip install -r requirements.txt
+A **search budget of 1000 trials** is recommended to ensure convergence of:
 
+- RBF kernel scales  
+- Kernel mixing weights  
+- Distribution rectification coefficients  
 
-Dataset
+---
 
-Follow DATASET.md to install ImageNet and the other 10 benchmarks (Caltech101, DTD, EuroSAT, FGVCAircraft, Food101, OxfordFlowers, OxfordPets, StanfordCars, SUN397, UCF101) referring to CoOp.
+## 🧠 GPT-3 Semantic Descriptions
 
-Get Started
+- GPT-3 class descriptions are used to construct the **Hybrid Prior**.
+- Semantic descriptors are **ensembled** following the methodology introduced in **LwEIB**.
+- Text prompts are cached and reused to preserve the **training-free adaptation** property.
 
-Configs
+---
 
-The running configurations, including the Optuna search space and kernel parameters, can be modified directly in the configs/ directory.
+## ▶️ How to Run
 
-Running
+### Example: 1-Shot Evaluation on ImageNet
 
-For one-shot classification with the standard 1,000 trial search budget:
+```bash
+python main.py \
+    --config-file configs/trainers/ReHARK/vit_b16.yaml \
+    --dataset-config-file configs/datasets/imagenet.yaml \
+    --trainer ReHARK \
+    --shot 1 \
+    --search_budget 1000
+```
+## 📌 Citation
 
-python main.py --method ReHARK --shots 1 --dataset caltech101 --augment-epoch 10
+If you find this work useful for your research, please cite:
 
+```bibtex
+```
+## 🤝 Acknowledgements
 
-If GPU memory is saturated, consider using fewer data augmentations via --augment-epoch.
+This work builds upon and benefits from several outstanding prior works and open-source frameworks, including:
 
-Running Options
+- **Tip-Adapter**
+- **ProKeR**
+- **LwEIB**
+- **CoOp**
+## 📬 Contact
 
-Multiple methods are implemented for comparison:
-| Name | Details |
-| :--- | :--- |
-| ZeroShot | CLIP |
-| TIP | Tip-Adapter: Training-free CLIP-Adapter for Better Vision-Language Modeling |
-| GDA | A Hard-to-Beat Baseline for Training-free CLIP-based Adaptation |
-| ProKeR | A Kernel Perspective on Training-Free Few-Shot Adaptation |
-| ReHARK | ReHARK (ours) - Refined Hybrid Adaptive RBF Kernels |
+For questions, discussions, or collaboration opportunities, please feel free to reach out:
 
-Performance & Analysis
+**Md Jahidul Islam**  
+Department of Electrical and Electronic Engineering  
+Bangladesh University of Engineering and Technology (BUET)  
 
-Method
-
-Avg. Accuracy (1-Shot)
-
-Linear Baseline
-
-55.45%
-
-Laplacian Kernel
-
-60.84%
-
-ReHARK (Proposed)
-
-65.83%
-
-Acknowledgement
-
-This repository benefits from ProKeR, Tip-Adapter, and GDA.
-
-Citation
-
-@article{ReHARK2026,
-  title={Refined Hybrid Adaptive RBF Kernels for Robust One-Shot Vision-Language Adaptation},
-  author={Bendou, Yassir},
-  journal={arXiv preprint},
-  year={2026},
-  url={[https://arxiv.org/abs/2501.11175](https://arxiv.org/abs/2501.11175)}
-}
-
-
-Contact
-
-If you have any questions, feel free to contact:
-
-Maintainer: Md ajhidul Islam (2006123@eee.buet.ac.bd)
+📧 Email: *[2006123@eee.buet.ac.bd]*
