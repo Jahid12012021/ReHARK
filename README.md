@@ -53,7 +53,6 @@ The framework introduces a **multi-stage refinement pipeline**:
 ---
 
 ## 📊 1-Shot Performance (ViT-B/16 CLIP)
-![ReHARK](docs/ReHARK_line_page-0001.jpg)
 Classification accuracy (%) in the **1-shot** setting:
 
 | Method | ImageNet | Caltech101 | DTD | EuroSAT | FGVCAircraft | Food101 | OxfordFlowers | OxfordPets | StanfordCars | SUN397 | UCF101 | **Avg** |
@@ -64,7 +63,7 @@ Classification accuracy (%) in the **1-shot** setting:
 | ProKeR | 60.60 | 88.17 | 47.99 | 59.75 | 20.65 | 77.40 | 78.85 | 86.44 | 56.79 | 59.66 | 65.13 | 63.77 |
 | **ReHARK (Proposed)** | **61.88** | **90.13** | **49.23** | **69.19** | **21.45** | **77.55** | **80.82** | **86.34** | **59.18** | **63.53** | **64.83** | **65.83** |
 
-📌 ReHARK shows especially strong gains on **structure-sensitive datasets** such as **EuroSAT** and **DTD**.
+📌 ReHARK shows especially strong gains on **structure-sensitive datasets** such as **EuroSAT**, **DTD** and **OxfordFlowers**.
 
 ---
 
