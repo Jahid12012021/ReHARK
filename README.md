@@ -4,7 +4,6 @@
 **Md Jahidul Islam**  
 Department of Electrical and Electronic Engineering  
 Bangladesh University of Engineering and Technology (BUET)  
-Preprint, 2026
 
 ---
 
