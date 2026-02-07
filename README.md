@@ -62,7 +62,7 @@ Classification accuracy (%) in the **1-shot** setting:
 | GDA | 60.68 | 58.30 | 46.26 | 77.42 | 85.49 | 59.93 | 62.65 | 62.24 |
 | Tip-Adapter | 60.58 | 56.76 | 45.90 | 77.54 | 86.02 | 60.15 | 64.40 | 62.85 |
 | ProKeR | 60.77 | 59.75 | 47.99 | 77.40 | 86.44 | 59.61 | 65.13 | 63.77 |
-| **ReHARK (Ours)** | **61.88** | **69.19** | **49.23** | **77.55** | **86.34** | **63.53** | **64.83** | **65.83** |
+| **ReHARK (Proposed)** | **61.88** | **69.19** | **49.23** | **77.55** | **86.34** | **63.53** | **64.83** | **65.83** |
 
 📌 ReHARK shows especially strong gains on **structure-sensitive datasets** such as **EuroSAT** and **DTD**.
 
