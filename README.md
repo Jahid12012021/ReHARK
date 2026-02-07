@@ -22,6 +22,7 @@ ReHARK establishes a **new state-of-the-art** for one-shot vision-language adapt
 
 ## ✨ Key Idea
 
+![ReHARK](docs/ReHARK_architecture_page-0001.jpg)
 ReHARK reframes few-shot adaptation as **global proximal regularization in RKHS**, enabling robust adaptation while preserving zero-shot knowledge.
 
 The framework introduces a **multi-stage refinement pipeline**:
@@ -53,7 +54,7 @@ The framework introduces a **multi-stage refinement pipeline**:
 ---
 
 ## 📊 1-Shot Performance (ViT-B/16 CLIP)
-
+![ReHARK](docs/ReHARK_line_page-0001.jpg)
 Classification accuracy (%) in the **1-shot** setting:
 
 | Method | ImageNet | EuroSAT | DTD | Food101 | Pets | SUN397 | UCF101 | Avg |
