@@ -126,6 +126,14 @@ python main.py \
 If you find this work useful for your research, please cite:
 
 ```bibtex
+@article{islam2026rehark,
+  title={ReHARK: Refined Hybrid Adaptive RBF Kernels for Robust One-Shot Vision-Language Adaptation},
+  author={Islam, Md Jahidul},
+  journal={Available at SSRN 6396531},
+  year={2026},
+  url={https://ssrn.com/abstract=6396531},
+  doi={10.2139/ssrn.6396531}
+}
 ```
 ## 🤝 Acknowledgements
 
